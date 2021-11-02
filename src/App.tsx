@@ -87,7 +87,7 @@ export function App() {
         { items.map(item => {
           return (
             <VideoCard key={item.id} style={{height: "200px"}} onClick={() => handleOpenVideoModal(item.id)}>
-              <img src={item.featured_image_urls.thumbnail[0]} alt="" />
+              <img src={item.featured_image_urls.medium_large[0]} alt="" />
             </VideoCard>
           )
         })}
