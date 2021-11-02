@@ -46,7 +46,7 @@ export function App() {
     setIsVideoModalOpen(true)
     const videoUrl = items.find(video => video.id === id)
 
-    setSelectedVideoUrl("https://demo.aspanteras.tv/trailer/" + videoUrl!.excerpt.rendered.replace(/(<([^>]+)>)/ig, '');
+    setSelectedVideoUrl("https://demo.aspanteras.tv/trailer/" + videoUrl!.excerpt.rendered.replace(/(<([^>]+)>)/ig, ''));
   }
 
   const handleCloseVideoModal = () => {
