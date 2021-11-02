@@ -10,10 +10,10 @@ import Loader from "react-loader-spinner";
 
 interface Videos {
   id: string;
-  image: string;
-  title: string;
-  category: string;
-  video: string;
+  featured_image_urls: any;
+  title: any;
+  video_cat: any;
+  excerpt: any;
 }
 
 
@@ -23,13 +23,13 @@ export function App() {
   const [selectedVideoUrl, setSelectedVideoUrl] = useState('')
 
   useEffect(() => {
-    axios.get<Videos[]>('https://my.api.mockaroo.com/videos_panteras.json?key=db117260&page=1')
+    axios.get<Videos[]>('https://panterastv.com/wp-json/wp/v2/video')
       .then( response => setItems(response.data))
   }, [])
 
   const fetchVideos = async () => {
     const res = await fetch(
-      'https://my.api.mockaroo.com/videos_panteras.json?key=db117260&page=1'
+      'https://panterastv.com/wp-json/wp/v2/video'
     );
 
     const data = await res.json();
@@ -46,7 +46,7 @@ export function App() {
     setIsVideoModalOpen(true)
     const videoUrl = items.find(video => video.id === id)
 
-    setSelectedVideoUrl(videoUrl!.video)
+    setSelectedVideoUrl("https://demo.aspanteras.tv/trailer/" + videoUrl!.excerpt.rendered.replace(/(<([^>]+)>)/ig, '');
   }
 
   const handleCloseVideoModal = () => {
@@ -87,7 +87,7 @@ export function App() {
         { items.map(item => {
           return (
             <VideoCard key={item.id} style={{height: "200px"}} onClick={() => handleOpenVideoModal(item.id)}>
-              <img src={item.image} alt="" />
+              <img src={item.featured_image_urls.thumbnail[0]} alt="" />
             </VideoCard>
           )
         })}
